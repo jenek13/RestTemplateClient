@@ -1,5 +1,6 @@
 package com.ten.restTemplate;
 
+import com.ten.model.Role;
 import com.ten.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +27,37 @@ public class MyRestTemplate {
          restTemplate.delete(url, id);
      }
 
+     public void addUser(User user) {
+         RestTemplate restTemplate = new RestTemplate();
+         String uri = "http://localhost:8081/server/create";
+         restTemplate.postForEntity(uri, user, User.class);
+         //restTemplate.postForObject(uri, user,User.class);
+     }
 
+    public void updateUser(User user) {
+        RestTemplate restTemplate = new RestTemplate();
+        String uri = "http://localhost:8081/server/doUpdate";
+        restTemplate.postForEntity(uri, user, User.class);
+        //restTemplate.postForObject(uri, user,User.class);
+    }
+
+
+
+     public User getUserById(long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        String uri = "http://localhost:8081/server/getUserById/{id}";
+        return restTemplate.getForObject(uri, User.class, id);
+     }
+
+    public Role getRoleById(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        String uri = "http://localhost:8081/server/getRoleById/{id}";
+        return restTemplate.getForObject(uri, Role.class, id);
+    }
+    //ВОТ метод выше должен быть аналогом страого мтеода в классе дао
+//    public Role getById(long id) {
+//        return em.find(Role.class, id);
+//    }
 
 
 
@@ -42,6 +73,4 @@ public class MyRestTemplate {
         User user = restTemplate.getForObject(uri, User.class);
         return user;
     }
-
-
 }

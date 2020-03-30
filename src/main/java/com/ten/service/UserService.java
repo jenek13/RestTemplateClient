@@ -9,9 +9,9 @@ public interface UserService<T> {
 
 
     List<User> listUser();
-//    User selectUser(long id) ;
+    User selectUser(long id) ;
     void deleteUser(long id) ;
-//    void insertUser(User user);
-//    void updateUser(User user) ;
+    void insertUser(User user);
+    void updateUser(User user) ;
     User getUserByLogin(String login);
 }

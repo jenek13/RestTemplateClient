@@ -26,26 +26,26 @@ public class UserServiceImpl implements UserService {
 
 
 
-//    @Override
-//    public User selectUser(long id)  {
-//        try {
-//            return  userDAO.getUserById(id);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return  null;
-//    }
-//
-//
-//
+    @Override
+    public User selectUser(long id)  {
+        return  myRestTemplate.getUserById(id);
+    }
 
-//
-//    @Override
-//    public void insertUser(User user) {
-//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        userDAO.addUser(user);
-//    }
+
+
+
+
+    @Override
+    public void insertUser(User user) {
+        myRestTemplate.addUser(user);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        myRestTemplate.updateUser(user);
+    }
+
+
 //
 //    @Override
 //    public void updateUser(User user)  {

@@ -11,13 +11,13 @@ public interface RoleService {
 //
 //    Role getRoleByName(String roleName);
 //
-//    Role getRoleById(Long id);
+    Role getRoleById(Long id);
 //
 //    List<Role> getAllRoles();
 //
 //    void updateRole(Role role);
 //
 //    void deleteRoleById(Long id);
-//
-//    Set<Role> getRolesbyID(Long id);
+
+    Set<Role> getRolesbyID(Long id);
 }
