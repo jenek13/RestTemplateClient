@@ -54,8 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     //.hasAnyAuthority("ROLE_USER")//юзер с ролью юзер может войти на юрл выше
                     .antMatchers("/admin/**")
-                    .permitAll()
-                    //.hasAnyAuthority("ROLE_ADMIN")
+                    //.permitAll()
+                    .hasAnyAuthority("ROLE_ADMIN")
                     .and()
                     .formLogin()//регистрируем страницу с формой логина
                     .loginPage("/login")//имя джспи страницы куда направить по дефолту при запуске
