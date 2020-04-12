@@ -1,0 +1,44 @@
+{
+  "properties": [
+    {
+      "name": "server.url",
+      "type": "java.lang.String",
+      "defaultValue": "http://localhost:8081/server",
+      "description": "Description for server.url."
+    },
+    {
+      "name": "path.selectAllUsers",
+      "type": "java.lang.String",
+      "description": "Description for path.selectAllUsers."
+    },
+    {
+      "name": "path.removeUser",
+      "type": "java.lang.String",
+      "description": "Description for path.removeUser."
+    },
+    {
+      "name": "path.addUser",
+      "type": "java.lang.String",
+      "description": "Description for path.addUser."
+    },
+    {
+      "name": "path.updateUser",
+      "type": "java.lang.String",
+      "description": "Description for path.updateUser."
+    },
+    {
+      "name": "path.getUserById",
+      "type": "java.lang.String",
+      "description": "Description for path.getUserById."
+    },
+    {
+      "name": "path.getRoleById",
+      "type": "java.lang.String",
+      "description": "Description for path.getRoleById."
+    },
+    {
+      "name": "path.getUserByLogin",
+      "type": "java.lang.String",
+      "description": "Description for path.getUserByLogin."
+    }
+  ] }

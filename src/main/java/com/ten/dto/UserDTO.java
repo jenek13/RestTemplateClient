@@ -1,6 +1,14 @@
 package com.ten.dto;
 
-public class UserDTO {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ten.model.Role;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+public class UserDTO implements UserDetails {
 
     private Long id;
     private String login;
@@ -11,8 +19,41 @@ public class UserDTO {
         return id;
     }
 
+    private Set<Role> roles = new HashSet<>();
+
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
     }
 
     public String getLogin() {
@@ -37,5 +78,12 @@ public class UserDTO {
 
     public void setRole(Long role) {
         this.role = role;
+    }
+
+    public Set<Role> getRoles() {//вызывается полсе userDTOService getUserById
+        return roles;
+    }
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

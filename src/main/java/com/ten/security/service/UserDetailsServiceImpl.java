@@ -1,7 +1,7 @@
 package com.ten.security.service;
 
-import com.ten.model.User;
-import com.ten.service.UserService;
+import com.ten.dto.UserDTO;
+import com.ten.service.UserDTOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service("userDetailsService")
@@ -20,21 +19,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {	//серви
         return new BCryptPasswordEncoder();
     }
 
-    private final UserService userService;
+//    private final UserService userService;
+    private final UserDTOService userDTOService;
 
     @Autowired
-    public UserDetailsServiceImpl(UserService userService) {
-        this.userService = userService;
+    public UserDetailsServiceImpl(UserDTOService userDTOService) {
+        this.userDTOService = userDTOService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = userService.getUserByLogin(login);//тут приходт налл а не логин введенный в форму, т е с формы не уходит логин
-        if (user == null) {
+        UserDTO userDTO = userDTOService.getUserByLogin(login);
+        if (userDTO == null) {
             throw new UsernameNotFoundException("Username " + login + " not found");
         }
-
-        return user;
+        return  userDTO;
     }
 
 

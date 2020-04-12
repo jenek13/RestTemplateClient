@@ -54,8 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     //.hasAnyAuthority("ROLE_USER")//юзер с ролью юзер может войти на юрл выше
                     .antMatchers("/admin/**")
-                    //.permitAll()
-                    .hasAnyAuthority("ROLE_ADMIN")
+                    .permitAll()
+                    //.hasAnyAuthority("ROLE_ADMIN")
                     .and()
                     .formLogin()//регистрируем страницу с формой логина
                     .loginPage("/login")//имя джспи страницы куда направить по дефолту при запуске
@@ -73,13 +73,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             e.printStackTrace();
         }
     }
-
-    /*@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password("{noop}user").roles("USER");
-        auth.inMemoryAuthentication().withUser("admin").password("{noop}admin").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("ad").password("{noop}ad").roles("ADMIN");
-    }*/
 
     @Bean
     public PasswordEncoder encoder() {
@@ -99,10 +92,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) {
-        //PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        //User.withUsername("admin").password("{noop}admin").roles("ADMIN").build();
-        //The name of the configureGlobal method is not important. However,
-        // it is important to only configure AuthenticationManagerBuilder in a class annotated with either @EnableWebSecurity
         try {
             auth.
                     userDetailsService(authenticationService).passwordEncoder(encoder());
@@ -110,5 +99,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             e.printStackTrace();
         }
     }
-
 }

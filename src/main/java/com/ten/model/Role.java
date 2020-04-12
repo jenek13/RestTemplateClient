@@ -1,48 +1,32 @@
 package com.ten.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ten.dto.UserDTO;
 import org.springframework.security.core.GrantedAuthority;
-
-import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-@Entity
-@Table(name = "roles")
 public class Role implements GrantedAuthority {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", length = 20, nullable = false)
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity = User.class)
-//    @JoinTable(name = "user_roles",
-//            joinColumns = {@JoinColumn(name = "role_id")}
-//            //inverseJoinColumns = {@JoinColumn(name = "user_id")}
-//            )
-
     @JsonIgnore
-    private Set<User> users = new HashSet<>();
-    //private List<User> users = new ArrayList<>();
-
+    private Set<UserDTO> users = new HashSet<>();
 
     public Role() {
     }
 
-    public Set<User> getUsers() {
+    public Set<UserDTO> getUsers() {//вызывается при edit
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(Set<UserDTO> users) {//вызывается при edit
         this.users = users;
     }
-    public void setName(String name) {
+
+    public void setName(String name) {//вызывается при edit
         this.name = name;
     }
     public void setId(Long id) {
@@ -58,13 +42,9 @@ public class Role implements GrantedAuthority {
         return id;
     }
 
-
-
-    public String getName() {
+    public String getName() {//вызывается при edit
         return name;
     }
-
-
 
     @Override
     public String toString() {
@@ -95,5 +75,4 @@ public class Role implements GrantedAuthority {
         result = 31 * result + name.hashCode();
         return result;
     }
-
 }
